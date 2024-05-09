@@ -21,7 +21,13 @@
                         </a>
                     </span>
                 </div>
-                <div class="flex font-bold space-x-4 bg-gradient-to-r from-blue-200 to-purple-400 inline-block text-transparent bg-clip-text">
+                <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden focus:outline-none">
+                    <span class="sr-only">Open navigation menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
+                <div class="flex font-bold space-x-4 bg-gradient-to-r from-blue-200 to-purple-400 inline-block text-transparent bg-clip-text hidden w-full md:block md:w-auto">
                     <a href="https://htmx.org/" target="_blank" rel="noopener noreferrer" class="hover:underline pointer-events-auto">HTMX</a>
                     <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" class="hover:underline pointer-events-auto">Tailwind CSS</a>
                     <a href="https://mustache.github.io/" target="_blank" rel="noopener noreferrer" class="hover:underline pointer-events-auto">Mustache.js</a>
@@ -46,18 +52,18 @@
                                 </p>
                               </blockquote>
                               <div class="flex flex-col space-between space-y-4">
-                                <figcaption class="font-medium">
-                                    <div class="text-white">
+                                <figcaption class="md:font-medium sm:font-small">
+                                    <div class="text-white sm:font-small">
                                         {{bookname}}
                                     </div>
-                                    <div class="text-white ">
+                                    <div class="text-white sm:font-small">
                                         Chapter {{chapter}} Verse {{verse}}
                                     </div>
                                   </figcaption>
                                   <button
                                   type="button"
                                   onclick="window.open('https://biblehub.com/{{bookname}}/{{chapter}}-{{verse}}.htm'.replace(/ /g,'_').toLowerCase(),'_blank')"
-                                  class="pointer-events-auto bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded border-2 border-neutral-50 px-7 h-16 text-sm font-medium uppercase"
+                                  class="pointer-events-auto bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded border-2 border-neutral-50 px-7 h-16 sm:text-sm md:font-medium uppercase"
                                   data-twe-ripple-init
                                   data-twe-ripple-color="dark">
                                   View on Bible Hub

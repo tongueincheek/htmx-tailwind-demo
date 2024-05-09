@@ -21,7 +21,7 @@
                         </a>
                     </span>
                 </div>
-                <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden focus:outline-none">
+                <button hx-on:click="htmx.toggleClass('#mobile-nav', 'hidden')" data-collapse-toggle="navbar-default" type="button" class="pointer-events-auto inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden focus:outline-none">
                     <span class="sr-only">Open navigation menu</span>
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
@@ -35,6 +35,21 @@
                 </div>
             </div>
         </nav>
+        <div id="mobile-nav" class="hidden h-screen text-4xl flex flex-col items-center justify-center font-bold space-x-4 w-screen z-50 bg-gray-800 px-4 py-4">
+            <div class="bg-gradient-to-r from-blue-200 to-purple-400 inline-block text-transparent bg-clip-text">
+                <a href="https://htmx.org/" target="_blank" rel="noopener noreferrer" class="hover:underline pointer-events-auto px-8 py-8">HTMX</a>
+            </div>
+            <div class="bg-gradient-to-r from-blue-200 to-purple-400 inline-block text-transparent bg-clip-text">
+
+                <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" class="hover:underline pointer-events-auto px-8 py-8">Tailwind CSS</a>
+            </div>
+            <div class="bg-gradient-to-r from-blue-200 to-purple-400 inline-block text-transparent bg-clip-text">
+                <a href="https://mustache.github.io/" target="_blank" rel="noopener noreferrer" class="hover:underline pointer-events-auto px-8 py-8">Mustache.js</a>
+            </div>
+            <div class="bg-gradient-to-r from-blue-200 to-purple-400 inline-block text-transparent bg-clip-text">
+                <a href="https://matthew.wagerfield.com/parallax/" target="_blank" rel="noopener noreferrer" class="hover:underline pointer-events-auto px-8 py-8">Parallax.js</a>
+            </div>
+        </div>
         <div id="scene" class="container mx-auto flex justify-center items-center h-screen">
             <div data-depth="0.25">
                 <div hx-ext="client-side-templates">
@@ -80,8 +95,11 @@
     <script>
         // Modify request headers to avoid Cross-Origin Request Blocked (CORS)
         document.addEventListener('htmx:configRequest', (evt) => { evt.detail.headers = [] });
-        // Enable Parallax.js functionality on content card
-        _ = new Parallax(document.getElementById('scene'));
+        // Enable Parallax.js functionality on content card on desktop
+        const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
+        if (!isMobile) {
+            _ = new Parallax(document.getElementById('scene'));
+        };
     </script>
 </body>
 </html>

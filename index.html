@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bible Verse Example</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preload" href="https://source.unsplash.com/random/?church/2000x2000" as="image" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <script src="https://unpkg.com/htmx.org/dist/htmx.min.js"></script>
     <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/client-side-templates.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.0/mustache.min.js"></script>
@@ -93,13 +94,32 @@
         </div>   
     </div>
     <script>
+        // Define logic to enable/disable parallax effect
+        function enableParallax() {
+            // Define Parallax.js object
+            const parallaxEffect = new Parallax(document.getElementById('scene'));
+            parallaxEffect.disable();
+            // Enable Parallax.js functionality on content card on desktop
+            const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
+            if (isMobile) {
+                if (typeof DeviceOrientationEvent.requestPermission !== 'function') {
+                    parallaxEffect.disable();
+                } else {
+                    DeviceOrientationEvent
+                    .requestPermission()
+                    .then(() => {
+                        parallaxEffect.enable();
+                    })
+                }
+            }
+        }
         // Modify request headers to avoid Cross-Origin Request Blocked (CORS)
         document.addEventListener('htmx:configRequest', (evt) => { evt.detail.headers = [] });
-        // Enable Parallax.js functionality on content card on desktop
-        const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
-        if (!isMobile) {
-            _ = new Parallax(document.getElementById('scene'));
-        };
+        // Update parallax status on view resize
+        window.addEventListener('resize', function(event) {
+            enableParallax();
+        }, true);
+        enableParallax();
     </script>
 </body>
 </html>

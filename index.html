@@ -102,15 +102,9 @@
             // Enable Parallax.js functionality on content card on desktop
             const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
             if (isMobile) {
-                if (typeof DeviceOrientationEvent.requestPermission !== 'function') {
-                    parallaxEffect.disable();
-                } else {
-                    DeviceOrientationEvent
-                    .requestPermission()
-                    .then(() => {
-                        parallaxEffect.enable();
-                    })
-                }
+                parallaxEffect.disable();
+            } else {
+                parallaxEffect.enable();
             }
         }
         // Modify request headers to avoid Cross-Origin Request Blocked (CORS)
